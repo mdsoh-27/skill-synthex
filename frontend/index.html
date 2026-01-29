@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Synthex - Resume Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent: #f43f5e;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top left, #1e1b4b, #0f172a);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            padding: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            background: linear-gradient(to right, #818cf8, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-dim);
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="file"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background: var(--primary-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .toggle-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .toggle-link span {
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #resumeSection {
+            text-align: center;
+        }
+
+        .file-upload-wrapper {
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .file-upload-wrapper:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+        }
+
+        #results {
+            margin-top: 2rem;
+            text-align: left;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            padding: 0.3rem 0.8rem;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            margin: 0.2rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .status-msg {
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .error {
+            background: rgba(244, 63, 94, 0.2);
+            color: #f87171;
+            border: 1px solid #f43f5e;
+        }
+
+        .success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            border: 1px solid #10b981;
+        }
+
+        .loader {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card" id="authCard">
+            <h1 id="authTitle">Welcome Back</h1>
+            <p class="subtitle" id="authSubtitle">Login to analyze your resume</p>
+
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" id="authBtn">Login</button>
+            </form>
+
+            <div class="toggle-link">
+                <span id="toggleText">Don't have an account? </span>
+                <span id="toggleAction" onclick="toggleAuth()">Sign up</span>
+            </div>
+            <div id="authStatus" class="status-msg hidden"></div>
+        </div>
+
+        <div class="card hidden" id="resumeSection">
+            <h1>Analyze Resume</h1>
+            <p class="subtitle">Upload your PDF or Word document</p>
+
+            <form id="uploadForm">
+                <div class="file-upload-wrapper" onclick="document.getElementById('fileInput').click()">
+                    <p id="fileName">Drop resume or click to browse</p>
+                    <input type="file" id="fileInput" class="hidden" accept=".pdf,.doc,.docx" required>
+                </div>
+                <button type="submit" id="uploadBtn">Extract Skills</button>
+            </form>
+
+            <div id="uploadStatus" class="status-msg hidden"></div>
+
+            <div id="results" class="hidden">
+                <h3 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-dim)">Extracted Skills:</h3>
+                <div id="skillList"></div>
+            </div>
+
+            <div class="toggle-link">
+                <span onclick="logout()">Logout</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin + "/api";
+        let isLogin = true;
+
+        function toggleAuth() {
+            console.log("🔄 Toggling auth mode. Current isLogin:", isLogin);
+            isLogin = !isLogin;
+
+            try {
+                document.getElementById('authTitle').innerText = isLogin ? "Welcome Back" : "Create Account";
+                document.getElementById('authSubtitle').innerText = isLogin ? "Login to analyze your resume" : "Start your journey today";
+                document.getElementById('authBtn').innerText = isLogin ? "Login" : "Sign Up";
+                document.getElementById('toggleText').innerText = isLogin ? "Don't have an account? " : "Already have an account? ";
+                document.getElementById('toggleAction').innerText = isLogin ? "Sign up" : "Login";
+                console.log("✅ UI Updated to", isLogin ? "Login" : "Signup");
+            } catch (err) {
+                console.error("❌ Failed to toggle auth UI:", err);
+            }
+        }
+
+        // Check if logged in on load
+        window.onload = () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                showResumeSection();
+            }
+        }
+
+        function showResumeSection() {
+            document.getElementById('authCard').classList.add('hidden');
+            document.getElementById('resumeSection').classList.remove('hidden');
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            location.reload();
+        }
+
+        document.getElementById('fileInput').onchange = (e) => {
+            const name = e.target.files[0]?.name || "No file selected";
+            document.getElementById('fileName').innerText = name;
+        }
+
+        // Auth Submission
+        document.getElementById('authForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const statusDiv = document.getElementById('authStatus');
+            const authBtn = document.getElementById('authBtn');
+
+            statusDiv.classList.add('hidden');
+            authBtn.innerHTML = '<div class="loader"></div> Processing...';
+            authBtn.disabled = true;
+
+            const endpoint = isLogin ? '/auth/login' : '/auth/signup';
+
+            try {
+                const res = await fetch(`${API_BASE}${endpoint}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+
+                if (!res.ok) throw new Error(data.error || "Something went wrong");
+
+                if (isLogin) {
+                    localStorage.setItem('token', data.token);
+                    showResumeSection();
+                } else {
+                    statusDiv.innerText = "Account created! Please login.";
+                    statusDiv.className = "status-msg success";
+                    statusDiv.classList.remove('hidden');
+                    toggleAuth();
+                }
+            } catch (err) {
+                statusDiv.innerText = err.message;
+                statusDiv.className = "status-msg error";
+                statusDiv.classList.remove('hidden');
+            } finally {
+                authBtn.innerText = isLogin ? "Login" : "Sign Up";
+                authBtn.disabled = false;
+            }
+        }
+
+        // Upload Submission
+        document.getElementById('uploadForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const fileInput = document.getElementById('fileInput');
+            const statusDiv = document.getElementById('uploadStatus');
+            const uploadBtn = document.getElementById('uploadBtn');
+            const resultsDiv = document.getElementById('results');
+            const skillList = document.getElementById('skillList');
+
+            if (!fileInput.files[0]) return;
+
+            statusDiv.classList.add('hidden');
+            resultsDiv.classList.add('hidden');
+            uploadBtn.innerHTML = '<div class="loader"></div> Extracting...';
+            uploadBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('resume', fileInput.files[0]);
+
+            try {
+                const res = await fetch(`${API_BASE}/resume/upload`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: formData
+                });
+
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || "Upload failed");
+
+                statusDiv.innerText = data.message;
+                statusDiv.className = "status-msg success";
+                statusDiv.classList.remove('hidden');
+
+                skillList.innerHTML = '';
+                if (data.skills && data.skills.length > 0) {
+                    data.skills.forEach(skill => {
+                        const span = document.createElement('span');
+                        span.className = 'skill-tag';
+                        span.innerText = skill;
+                        skillList.appendChild(span);
+                    });
+                } else {
+                    skillList.innerHTML = '<p style="font-size: 0.8rem; color: var(--text-dim)">No skills detected.</p>';
+                }
+                resultsDiv.classList.remove('hidden');
+
+            } catch (err) {
+                statusDiv.innerText = err.message;
+                statusDiv.className = "status-msg error";
+                statusDiv.classList.remove('hidden');
+            } finally {
+                uploadBtn.innerText = "Extract Skills";
+                uploadBtn.disabled = false;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

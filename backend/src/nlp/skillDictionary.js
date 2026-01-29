@@ -1,0 +1,5 @@
+module.exports = [
+  "python", "java", "javascript", "node", "express", "react", "sql", "mysql", "mongodb", "aws",
+  "machine learning", "data science", "nlp", "html", "css", "vue", "angular", "docker", "kubernetes",
+  "typescript", "nextjs", "git", "firebase", "sqlite", "postgresql", "c++", "c#", ".net", "php", "laravel"
+];
