@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs');
-// const users=require('../utils/resumeTextExtractor.js');
 const jwt = require('jsonwebtoken');
 const db = require('../config/db');
 
@@ -17,9 +16,8 @@ exports.signup = async (req, res) => {
         return res.status(400).json({
             error: "Invalid email format"
         });
-    };
+    }
 
-    // Relaxed password regex for easier testing (min 6 characters)
     const passwordRegex = /^.{6,}$/;
     if (!passwordRegex.test(password)) {
         console.warn(`⚠️ Signup failed: Password too weak for ${email}`);
@@ -33,23 +31,21 @@ exports.signup = async (req, res) => {
 
     const query = `INSERT INTO users (email, password) VALUES (?, ?)`;
 
-    db.run(query, [email, hashedPassword], function (err) {
-        if (err) {
-            if (err.message.includes('UNIQUE constraint failed')) {
-                return res.status(409).json({ error: "User already exists" });
-            }
-            return res.status(500).json({ error: "Database error" });
-        }
+    try {
+        await db.query(query, [email, hashedPassword]);
         res.status(201).json({ message: "user registered successfully" });
-    });
-
+    } catch (err) {
+        if (err.code === 'ER_DUP_ENTRY') {
+            return res.status(409).json({ error: "User already exists" });
+        }
+        console.error('Database error:', err);
+        return res.status(500).json({ error: "Database error" });
+    }
 };
 
-//loginup
-
+//login
 exports.login = async (req, res) => {
     const { email, password } = req.body;
-
 
     if (!email || !password) {
         return res.status(400).json({
@@ -59,11 +55,13 @@ exports.login = async (req, res) => {
 
     const query = "SELECT * FROM users WHERE email = ?";
 
-    db.get(query, [email], async (err, user) => {
-        if (err) return res.status(500).json({ error: "Database error" });
+    try {
+        const [rows] = await db.query(query, [email]);
+        const user = rows[0];
 
-        if (!user)
+        if (!user) {
             return res.status(401).json({ error: "Invalid email" });
+        }
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
@@ -81,5 +79,8 @@ exports.login = async (req, res) => {
 
         // Send token
         res.json({ message: "Login successful", token });
-    });
-}
+    } catch (err) {
+        console.error('Database error:', err);
+        return res.status(500).json({ error: "Database error" });
+    }
+};

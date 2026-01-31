@@ -4,6 +4,13 @@ const db = require('../config/db');
 
 exports.uploadResume = async (req, res) => {
   try {
+    console.log('📬 Upload request received');
+    console.log('📁 File info:', req.file);
+
+    if (!req.file) {
+      throw new Error('No file uploaded');
+    }
+
     // 1️⃣ Extract text
     const text = await extractTextFromPDF(req.file.path);
 
@@ -16,24 +23,18 @@ exports.uploadResume = async (req, res) => {
       VALUES (?, ?, ?, ?)
     `;
 
-    db.run(
+    await db.query(
       query,
-      [req.user.id, req.file.filename, text, JSON.stringify(skills)],
-      function (err) {
-        if (err) {
-          console.error(err);
-          return res.status(500).json({ error: "DB error" });
-        }
-
-        res.json({
-          message: "Resume uploaded & checked successfully",
-          skills
-        });
-      }
+      [req.user.id, req.file.filename, text, JSON.stringify(skills)]
     );
 
+    res.json({
+      message: "Resume uploaded & checked successfully",
+      skills
+    });
+
   } catch (err) {
-    console.error('❌ Resume processing error:', err); // Log full error object
+    console.error('❌ Resume processing error:', err);
     res.status(500).json({
       error: "Resume processing failed",
       message: err.message,
