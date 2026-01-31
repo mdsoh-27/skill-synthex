@@ -33,10 +33,11 @@ exports.uploadResume = async (req, res) => {
     );
 
   } catch (err) {
-    console.error('❌ Resume processing error:', err.message);
+    console.error('❌ Resume processing error:', err); // Log full error object
     res.status(500).json({
       error: "Resume processing failed",
-      details: err.message
+      message: err.message,
+      stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
     });
   }
 };
