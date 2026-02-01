@@ -7,11 +7,23 @@ function loadDataset(filePath) {
 
     fs.createReadStream(filePath)
       .pipe(csv())
-      .on("data", (row) => {
-        Object.keys(row).forEach(key => {
-          if (key !== "role") row[key] = Number(row[key]);
+      .on("data", (dataRow) => {
+        const cleanedRow = {};
+        Object.keys(dataRow).forEach(key => {
+          const cleanKey = key.trim().toLowerCase();
+          const rawValue = dataRow[key] || "";
+          const cleanValue = rawValue.trim();
+
+          if (cleanKey === "role") {
+            cleanedRow["role"] = cleanValue;
+          } else {
+            cleanedRow[cleanKey] = Number(cleanValue) || 0;
+          }
         });
-        data.push(row);
+        // Only push if the row actually has a role name
+        if (cleanedRow.role) {
+          data.push(cleanedRow);
+        }
       })
       .on("end", () => resolve(data))
       .on("error", reject);

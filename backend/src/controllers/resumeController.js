@@ -2,9 +2,8 @@ const { extractTextFromPDF } = require('../utils/resumeTextExtractor');
 const { extractSkills } = require('../nlp/extractSkills');
 const db = require('../config/db');
 const loadDataset = require("../ml/loadDataset");
-const matchRoles = require("../ml/roleMatcher");
+const { matchRoles, analyzeSkillGap } = require("../ml/roleMatcher");
 const path = require("path");
-
 
 exports.uploadResume = async (req, res) => {
   try {
@@ -38,28 +37,38 @@ exports.uploadResume = async (req, res) => {
     }
 
     await db.query(
-  query,
-  [req.user.id, req.file.filename, text, JSON.stringify(skills)]
-);
-console.log('✅ Saved to DB successfully');
+      query,
+      [req.user.id, req.file.filename, text, JSON.stringify(skills)]
+    );
+    console.log('✅ Saved to DB successfully');
 
-// 🔹 Load career dataset
-const datasetPath = path.join(
-  __dirname,
-  "../ml/data/career_dataset.csv"
-);
-const dataset = await loadDataset(datasetPath);
+    // 🔹 Load career dataset
+    const datasetPath = path.join(
+      __dirname,
+      "../ml/data/career_dataset.csv"
+    );
+    const dataset = await loadDataset(datasetPath);
 
-// 🔹 Match roles
-const suggestedRoles = matchRoles(skills, dataset);
-console.log("🎯 Suggested Roles:", suggestedRoles);
+    // 🔹 Match roles (General recommendations)
+    const suggestedRoles = matchRoles(skills, dataset);
+    console.log("🎯 Suggested Roles:", suggestedRoles);
 
-// 🔹 Send response
-res.json({
-  message: "Resume uploaded & checked successfully",
-  skills,
-  suggestedRoles
-});
+    // 🔹 Skill Gap Analysis (Specific target role)
+    const targetRole = req.body.targetRole;
+    let skillGap = null;
+
+    if (targetRole) {
+      console.log(`🔍 Analyzing Skill Gap for: ${targetRole}`);
+      skillGap = analyzeSkillGap(skills, targetRole, dataset);
+    }
+
+    // 🔹 Send response
+    res.json({
+      message: "Resume uploaded & checked successfully",
+      skills,
+      suggestedRoles,
+      skillGap
+    });
 
   } catch (err) {
     console.error('❌ Resume processing error:', err.message);
