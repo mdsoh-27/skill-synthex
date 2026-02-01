@@ -1,28 +1,81 @@
-module.exports = [
-  // --- Languages ---
-  "python", "javascript", "typescript", "java", "c++", "c#", "go", "rust", "php", "ruby", "swift", "kotlin", "dart", "sql",
+// skillDictionary.js
+const skillDictionary = {
+  python: "Python",
+  java: "Java",
+  c: "C",
+  cpp: "C++",
+  go: "Go",
+  rust: "Rust",
+  scala: "Scala",
+  javascript: "JavaScript",
+  typescript: "TypeScript",
+  node: "Node.js",
+  express: "Express.js",
+  react: "React",
+  angular: "Angular",
+  vue: "Vue.js",
+  nextjs: "Next.js",
+  html: "HTML",
+  css: "CSS",
+  tailwind: "Tailwind CSS",
+  android: "Android",
+  flutter: "Flutter",
+  sql: "SQL",
+  mysql: "MySQL",
+  postgresql: "PostgreSQL",
+  oracle: "Oracle",
+  sqlite: "SQLite",
+  mongodb: "MongoDB",
+  redis: "Redis",
+  cassandra: "Cassandra",
+  dynamodb: "DynamoDB",
+  neo4j: "Neo4j",
+  elasticsearch: "Elasticsearch",
+  aws: "AWS",
+  azure: "Azure",
+  gcp: "GCP",
+  docker: "Docker",
+  kubernetes: "Kubernetes",
+  terraform: "Terraform",
+  ci_cd: "CI/CD",
+  linux: "Linux",
+  excel: "Excel",
+  powerbi: "Power BI",
+  tableau: "Tableau",
+  looker: "Looker",
+  data_analysis: "Data Analysis",
+  data_visualization: "Data Visualization",
+  machine_learning: "Machine Learning",
+  deep_learning: "Deep Learning",
+  nlp: "NLP",
+  computer_vision: "Computer Vision",
+  reinforcement_learning: "Reinforcement Learning",
+  generative_ai: "Generative AI",
+  llm: "LLM",
+  rag: "RAG",
+  mlops: "MLOps",
+  pandas: "Pandas",
+  numpy: "NumPy",
+  spark: "Spark",
+  hadoop: "Hadoop",
+  kafka: "Kafka",
+  airflow: "Airflow",
+  data_warehousing: "Data Warehousing",
+  etl: "ETL",
+  cyber_security: "Cyber Security",
+  networking: "Networking",
+  cryptography: "Cryptography",
+  ethical_hacking: "Ethical Hacking",
+  forensics: "Forensics",
+  manual_testing: "Manual Testing",
+  automation_testing: "Automation Testing",
+  selenium: "Selenium",
+  pytest: "PyTest",
+  dsa: "DSA",
+  os: "Operating Systems",
+  dbms: "DBMS",
+  cn: "Computer Networks",
+  oops: "OOPs Concepts"
+};
 
-  // --- Frontend Tech ---
-  "html", "css", "react", "react.js", "next.js", "nextjs", "vue", "vue.js", "angular", "svelte", "tailwind", "tailwind css", "bootstrap", "sass", "less", "redux", "zustand", "framer motion", "webpack", "vite",
-
-  // --- Backend Tech ---
-  "node", "node.js", "express", "express.js", "flask", "django", "fastapi", "spring boot", "laravel", "rails", "nestjs", "graphql", "apollo", "prisma", "sequelize", "typeorm", "mongoose", "socket.io", "web sockets",
-
-  // --- Mobile Tech ---
-  "react native", "flutter", "ionic", "xamarin",
-
-  // --- Databases ---
-  "mysql", "postgresql", "postgres", "mongodb", "redis", "firebase", "sqlite", "cassandra", "elasticsearch", "neo4j", "mariadb", "oracle",
-
-  // --- Cloud & DevOps ---
-  "aws", "azure", "gcp", "google cloud", "docker", "kubernetes", "k8s", "terraform", "ci/cd", "jenkins", "github actions", "gitlab ci", "nginx", "apache", "linux", "bash", "shell", "ansible", "prometheus", "grafana",
-
-  // --- AI / ML / NLP / LLMs ---
-  "machine learning", "deep learning", "nlp", "natural language processing", "data science", "pytorch", "tensorflow", "scikit-learn", "keras", "opencv", "numpy", "pandas", "matplotlib", "seaborn", "langchain", "llama-index", "openai", "huggingface", "pinecone", "chromadb", "faiss", "milvus", "vector databases", "prompt engineering",
-
-  // --- RAG & Extraction ---
-  "rag", "retrieval augmented generation", "extraction", "text processing", "optical character recognition", "ocr", "pdf parsing", "beautifulsoup4", "selenium", "puppeteer",
-
-  // --- Tools & Others ---
-  "git", "github", "gitlab", "bitbucket", "jira", "postman", "swagger", "auth0", "jwt", "oauth", "agile", "scrum", "microservices", "serverless", "distributed systems", "pwa", "spa"
-];
+module.exports = skillDictionary;
