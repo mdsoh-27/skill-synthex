@@ -1,5 +1,10 @@
 node_modules/
 .env
-src/uploads/*
-!src/uploads/.gitkeep
 *.log
+.DS_Store
+
+# Ignores all files in any uploads folder
+**/uploads/*
+
+# Except the .gitkeep file (to preserve the folder structure)
+!**/uploads/.gitkeep
