@@ -1,8 +1,7 @@
 const { extractTextFromPDF } = require('../utils/resumeTextExtractor');
 const { extractSkills } = require('../nlp/extractSkills');
 const db = require('../config/db');
-const loadDataset = require("../ml/loadDataset");
-const { matchRoles, analyzeSkillGap } = require("../ml/roleMatcher");
+const { spawn } = require("child_process");
 const path = require("path");
 
 exports.uploadResume = async (req, res) => {
@@ -42,25 +41,50 @@ exports.uploadResume = async (req, res) => {
     );
     console.log('✅ Saved to DB successfully');
 
-    // 🔹 Load career dataset
-    const datasetPath = path.join(
-      __dirname,
-      "../ml/data/career_dataset.csv"
-    );
-    const dataset = await loadDataset(datasetPath);
+    // 🔹 Call Python ML Service
+    console.log('🤖 Calling Python ML Service...');
 
-    // 🔹 Match roles (General recommendations)
-    const suggestedRoles = matchRoles(skills, dataset);
-    console.log("🎯 Suggested Roles:", suggestedRoles);
+    const pythonProcess = spawn('python', [
+      path.join(__dirname, '../ml/ml_service.py')
+    ]);
 
-    // 🔹 Skill Gap Analysis (Specific target role)
-    const targetRole = req.body.targetRole;
-    let skillGap = null;
+    const mlInput = JSON.stringify({
+      skills,
+      targetRole: req.body.targetRole
+    });
 
-    if (targetRole) {
-      console.log(`🔍 Analyzing Skill Gap for: ${targetRole}`);
-      skillGap = analyzeSkillGap(skills, targetRole, dataset);
-    }
+    let mlOutput = '';
+    let mlError = '';
+
+    pythonProcess.stdin.write(mlInput);
+    pythonProcess.stdin.end();
+
+    const getMLResult = () => new Promise((resolve, reject) => {
+      pythonProcess.stdout.on('data', (data) => {
+        mlOutput += data.toString();
+      });
+
+      pythonProcess.stderr.on('data', (data) => {
+        mlError += data.toString();
+      });
+
+      pythonProcess.on('close', (code) => {
+        if (code !== 0) {
+          console.error(`❌ Python process exited with code ${code}`);
+          console.error(`stderr: ${mlError}`);
+          return reject(new Error('ML service failed'));
+        }
+        try {
+          const result = JSON.parse(mlOutput);
+          resolve(result);
+        } catch (e) {
+          reject(new Error('Failed to parse ML output'));
+        }
+      });
+    });
+
+    const { suggestedRoles, skillGap } = await getMLResult();
+    console.log("🎯 Python ML results received");
 
     // 🔹 Send response
     res.json({
