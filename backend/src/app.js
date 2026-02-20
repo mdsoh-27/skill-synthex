@@ -13,6 +13,7 @@ const errorHandler = require('./middleware/errorHandler');
 const protectedRoutes = require('./routes/protectedRoutes');
 const resumeRoutes = require('./routes/resumeRoutes');
 const authRoutes = require('./routes/authRoutes');
+const careerRoutes = require('./routes/careerRoutes');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/resume', resumeRoutes);
+app.use('/api/career', careerRoutes);
 app.use('/api', protectedRoutes);
 
 // Serve static frontend files

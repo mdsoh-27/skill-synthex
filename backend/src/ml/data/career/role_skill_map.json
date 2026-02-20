@@ -1,0 +1,47 @@
+{
+    "ml engineer": [
+        "java",
+        "scala",
+        "aws",
+        "azure",
+        "rag",
+        "spark"
+    ],
+    "data scientist": [
+        "scala",
+        "sql",
+        "aws",
+        "excel",
+        "rag",
+        "spark"
+    ],
+    "senior data analyst": [
+        "sql",
+        "excel",
+        "tableau",
+        "rag"
+    ],
+    "ai engineer": [
+        "java",
+        "scala",
+        "aws",
+        "azure",
+        "docker",
+        "excel",
+        "nlp",
+        "llm",
+        "rag"
+    ],
+    "lead data scientist": [
+        "rust",
+        "scala",
+        "sql",
+        "aws",
+        "docker",
+        "excel",
+        "tableau",
+        "rag",
+        "spark",
+        "etl"
+    ]
+}

@@ -46,6 +46,17 @@ Write-Host "User ID: $($profile.user.id)" -ForegroundColor Gray
 Write-Host "Email: $($profile.user.email)" -ForegroundColor Gray
 Write-Host ""
 
+# Test 4: Career Metrics
+Write-Host "Test 4: Career Metrics" -ForegroundColor Yellow
+$metrics = Invoke-RestMethod -Uri "http://localhost:5000/api/career/metrics" -Method GET
+if ($metrics.success) {
+    Write-Host "✅ Career metrics fetched successfully!" -ForegroundColor Green
+    Write-Host "Best Model: $($metrics.metrics.'Random Forest'.Accuracy)" -ForegroundColor Gray
+} else {
+    Write-Host "❌ Failed to fetch metrics: $($metrics.message)" -ForegroundColor Red
+}
+Write-Host ""
+
 Write-Host "=====================================" -ForegroundColor Cyan
 Write-Host "✅ All tests passed! Backend is working!" -ForegroundColor Green
 Write-Host ""

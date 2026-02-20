@@ -43,12 +43,12 @@ model.fit(X_train, y_train)
 
 # 6️⃣ Evaluate
 accuracy = accuracy_score(y_test, model.predict(X_test))
-print("✅ Model trained")
-print("🎯 Accuracy:", accuracy)
+print("Model trained")
+print("Accuracy:", accuracy)
 
 # 7️⃣ Save EVERYTHING needed for prediction
 pickle.dump(model, open("career_model.pkl", "wb"))
 pickle.dump(feature_columns, open("feature_columns.pkl", "wb"))
 pickle.dump(role_encoder, open("role_encoder.pkl", "wb"))
 
-print("💾 Saved model, feature columns, and encoder")
+print("Saved model, feature columns, and encoder")
