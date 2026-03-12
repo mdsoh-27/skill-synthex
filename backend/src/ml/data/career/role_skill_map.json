@@ -1,47 +1,163 @@
 {
-    "ml engineer": [
-        "java",
-        "scala",
-        "aws",
-        "azure",
-        "rag",
-        "spark"
-    ],
     "data scientist": [
-        "scala",
+        "python",
         "sql",
-        "aws",
-        "excel",
-        "rag",
+        "data_analysis",
+        "data_visualization",
+        "machine_learning",
+        "deep_learning",
+        "pandas",
+        "numpy",
         "spark"
     ],
-    "senior data analyst": [
-        "sql",
-        "excel",
-        "tableau",
-        "rag"
-    ],
-    "ai engineer": [
-        "java",
-        "scala",
+    "ml engineer": [
+        "python",
         "aws",
-        "azure",
         "docker",
-        "excel",
+        "kubernetes",
+        "machine_learning",
+        "deep_learning",
+        "mlops"
+    ],
+    "nlp engineer": [
+        "python",
+        "machine_learning",
+        "deep_learning",
         "nlp",
+        "generative_ai",
         "llm",
         "rag"
     ],
-    "lead data scientist": [
-        "rust",
-        "scala",
+    "computer vision engineer": [
+        "python",
+        "machine_learning",
+        "deep_learning",
+        "computer_vision"
+    ],
+    "ai researcher": [
+        "python",
+        "deep_learning",
+        "reinforcement_learning",
+        "generative_ai",
+        "llm"
+    ],
+    "backend developer": [
+        "java",
+        "node",
+        "express",
         "sql",
+        "mongodb",
+        "redis",
+        "docker",
+        "dbms"
+    ],
+    "frontend developer": [
+        "javascript",
+        "react",
+        "angular",
+        "vue",
+        "nextjs",
+        "html",
+        "css",
+        "tailwind"
+    ],
+    "full stack developer": [
+        "javascript",
+        "node",
+        "express",
+        "react",
+        "html",
+        "css",
+        "sql",
+        "mongodb"
+    ],
+    "devops engineer": [
+        "aws",
+        "azure",
+        "gcp",
+        "docker",
+        "kubernetes",
+        "terraform",
+        "ci_cd",
+        "linux"
+    ],
+    "cloud engineer": [
+        "aws",
+        "azure",
+        "gcp",
+        "docker",
+        "kubernetes",
+        "terraform"
+    ],
+    "data engineer": [
+        "python",
+        "sql",
+        "spark",
+        "hadoop",
+        "kafka",
+        "airflow",
+        "data_warehousing",
+        "etl"
+    ],
+    "big data engineer": [
+        "python",
+        "scala",
+        "spark",
+        "hadoop",
+        "kafka"
+    ],
+    "cyber security analyst": [
+        "cyber_security",
+        "networking",
+        "cryptography",
+        "ethical_hacking",
+        "forensics"
+    ],
+    "ethical hacker": [
+        "cyber_security",
+        "networking",
+        "cryptography",
+        "ethical_hacking"
+    ],
+    "qa engineer": [
+        "manual_testing",
+        "automation_testing",
+        "selenium",
+        "pytest"
+    ],
+    "mobile app developer": [
+        "java",
+        "android",
+        "flutter"
+    ],
+    "database administrator": [
+        "sql",
+        "mysql",
+        "postgresql",
+        "oracle",
+        "dbms"
+    ],
+    "business intelligence analyst": [
+        "excel",
+        "powerbi",
+        "tableau",
+        "looker",
+        "data_visualization"
+    ],
+    "software engineer": [
+        "python",
+        "java",
+        "dsa",
+        "os",
+        "dbms",
+        "cn",
+        "oops"
+    ],
+    "site reliability engineer": [
         "aws",
         "docker",
-        "excel",
-        "tableau",
-        "rag",
-        "spark",
-        "etl"
+        "kubernetes",
+        "ci_cd",
+        "linux"
     ]
 }

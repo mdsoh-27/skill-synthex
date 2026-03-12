@@ -1,0 +1,387 @@
+{
+    "data scientist": {
+        "title": "Data Scientist",
+        "description": "Analyze and interpret complex data to help organizations make informed decisions.",
+        "core_stack": [
+            "Python",
+            "SQL",
+            "R",
+            "Pandas",
+            "NumPy",
+            "Scikit-Learn"
+        ],
+        "milestones": [
+            {
+                "level": "Beginner",
+                "focus": "Data Foundations",
+                "topics": [
+                    "Python basics",
+                    "SQL queries",
+                    "Statistics",
+                    "Data cleaning with Pandas"
+                ]
+            },
+            {
+                "level": "Intermediate",
+                "focus": "Machine Learning",
+                "topics": [
+                    "Regression",
+                    "Classification",
+                    "Clustering",
+                    "Feature Engineering",
+                    "Matplotlib/Seaborn"
+                ]
+            },
+            {
+                "level": "Advanced",
+                "focus": "Deep Learning & Production",
+                "topics": [
+                    "TensorFlow/PyTorch",
+                    "Neural Networks",
+                    "Model Deployment (Flask/FastAPI)",
+                    "Big Data tools (Spark)"
+                ]
+            }
+        ]
+    },
+    "ml engineer": {
+        "title": "Machine Learning Engineer",
+        "description": "Design and build machine learning systems and automate model deployment.",
+        "core_stack": [
+            "Python",
+            "PyTorch/TensorFlow",
+            "Docker",
+            "Kubernetes",
+            "MLOps"
+        ],
+        "milestones": [
+            {
+                "level": "Beginner",
+                "focus": "ML Algorithms",
+                "topics": [
+                    "Linear Algebra",
+                    "Calculus",
+                    "Basic ML algorithms",
+                    "Data versioning"
+                ]
+            },
+            {
+                "level": "Intermediate",
+                "focus": "Systems & Scalability",
+                "topics": [
+                    "Deep Learning",
+                    "CNNs/RNNs",
+                    "API Development",
+                    "Database management"
+                ]
+            },
+            {
+                "level": "Advanced",
+                "focus": "MLOps",
+                "topics": [
+                    "Model Monitoring",
+                    "CI/CD for ML",
+                    "Distributed Training",
+                    "Cloud Services (AWS SageMaker/GCP AI Platform)"
+                ]
+            }
+        ]
+    },
+    "frontend developer": {
+        "title": "Frontend Developer",
+        "description": "Build responsive and interactive user interfaces for web applications.",
+        "core_stack": [
+            "HTML5",
+            "CSS3",
+            "JavaScript (ES6+)",
+            "React/Next.js",
+            "Tailwind CSS"
+        ],
+        "milestones": [
+            {
+                "level": "Beginner",
+                "focus": "Web Basics",
+                "topics": [
+                    "Semantic HTML",
+                    "CSS Layouts (Flexbox/Grid)",
+                    "Basic JavaScript",
+                    "DOM manipulation"
+                ]
+            },
+            {
+                "level": "Intermediate",
+                "focus": "Frameworks",
+                "topics": [
+                    "React Hooks",
+                    "State Management (Redux/Zustand)",
+                    "API Integration",
+                    "Responsive Design"
+                ]
+            },
+            {
+                "level": "Advanced",
+                "focus": "Performance & Architecture",
+                "topics": [
+                    "Server-Side Rendering (Next.js)",
+                    "Web Performance Optimization",
+                    "Unit Testing (Jest)",
+                    "Design Systems"
+                ]
+            }
+        ]
+    },
+    "backend developer": {
+        "title": "Backend Developer",
+        "description": "Build and maintain the server-side logic, databases, and APIs.",
+        "core_stack": [
+            "Node.js/Express",
+            "Java/Spring Boot",
+            "Python/Django",
+            "PostgreSQL",
+            "Redis"
+        ],
+        "milestones": [
+            {
+                "level": "Beginner",
+                "focus": "Server Basics",
+                "topics": [
+                    "RESTful APIs",
+                    "Node.js Basics",
+                    "Database CRUD operations",
+                    "Authentication basics"
+                ]
+            },
+            {
+                "level": "Intermediate",
+                "focus": "Scalability & Security",
+                "topics": [
+                    "JWT/OAuth",
+                    "Middleware design",
+                    "SQL Optimization",
+                    "Message Queues (RabbitMQ/Kafka)"
+                ]
+            },
+            {
+                "level": "Advanced",
+                "focus": "Distributed Systems",
+                "topics": [
+                    "Microservices architecture",
+                    "Caching strategies",
+                    "System monitoring",
+                    "Docker/Containerization"
+                ]
+            }
+        ]
+    },
+    "full stack developer": {
+        "title": "Full Stack Developer",
+        "description": "Handle both frontend and backend development tasks.",
+        "core_stack": [
+            "MERN/PERN Stack",
+            "TypeScript",
+            "AWS",
+            "Git"
+        ],
+        "milestones": [
+            {
+                "level": "Beginner",
+                "focus": "End-to-End Basics",
+                "topics": [
+                    "HTML/CSS/JS",
+                    "Basic Node.js",
+                    "MongoDB basics"
+                ]
+            },
+            {
+                "level": "Intermediate",
+                "focus": "Integration",
+                "topics": [
+                    "React with Express",
+                    "Database Relationships",
+                    "User Authentication",
+                    "State Management"
+                ]
+            },
+            {
+                "level": "Advanced",
+                "focus": "Cloud & DevOps",
+                "topics": [
+                    "Cloud deployment",
+                    "CI/CD Pipelines",
+                    "Docker",
+                    "Serverless functions"
+                ]
+            }
+        ]
+    },
+    "devops engineer": {
+        "title": "DevOps Engineer",
+        "description": "Bridge the gap between development and operations through automation.",
+        "core_stack": [
+            "Linux",
+            "Docker",
+            "Kubernetes",
+            "Terraform",
+            "Jenkins/GitHub Actions"
+        ],
+        "milestones": [
+            {
+                "level": "Beginner",
+                "focus": "Automation Basics",
+                "topics": [
+                    "Linux Command Line",
+                    "Git",
+                    "Scripting (Bash/Python)",
+                    "Networking basics"
+                ]
+            },
+            {
+                "level": "Intermediate",
+                "focus": "Infrastructure as Code",
+                "topics": [
+                    "Docker",
+                    "Terraform basics",
+                    "CI/CD Pipeline setup",
+                    "Cloud Basics (AWS/Azure)"
+                ]
+            },
+            {
+                "level": "Advanced",
+                "focus": "Orchestration & Security",
+                "topics": [
+                    "Kubernetes",
+                    "Monitoring (Prometheus/Grafana)",
+                    "DevSecOps",
+                    "Cost Optimization"
+                ]
+            }
+        ]
+    },
+    "nlp engineer": {
+        "title": "NLP Engineer",
+        "description": "Develop systems that understand and process human language.",
+        "core_stack": [
+            "Python",
+            "Hugging Face",
+            "LangChain",
+            "Transformers",
+            "Vector Databases"
+        ],
+        "milestones": [
+            {
+                "level": "Beginner",
+                "focus": "Text Processing",
+                "topics": [
+                    "Regex",
+                    "Tokenization",
+                    "NLTK/SpaCy basics",
+                    "TF-IDF/Embeddings"
+                ]
+            },
+            {
+                "level": "Intermediate",
+                "focus": "Deep Learning for Text",
+                "topics": [
+                    "RNNs/LSTMs",
+                    "Attention Mechanisms",
+                    "Transformers architecture",
+                    "BERT/fine-tuning"
+                ]
+            },
+            {
+                "level": "Advanced",
+                "focus": "Generative AI",
+                "topics": [
+                    "LLMs (GPT-4/Llama)",
+                    "RAG (Retrieval Augmented Generation)",
+                    "LangChain/LlamaIndex",
+                    "Vector DBs (Pinecone/Chroma)"
+                ]
+            }
+        ]
+    },
+    "computer vision engineer": {
+        "title": "Computer Vision Engineer",
+        "description": "Develop algorithms that allow computers to see and interpret visual information.",
+        "core_stack": [
+            "Python",
+            "OpenCV",
+            "PyTorch",
+            "CNNs",
+            "TensorFlow"
+        ],
+        "milestones": [
+            {
+                "level": "Beginner",
+                "focus": "Image Processing",
+                "topics": [
+                    "OpenCV basics",
+                    "Filtering",
+                    "Edge detection",
+                    "Color spaces"
+                ]
+            },
+            {
+                "level": "Intermediate",
+                "focus": "Deep Learning for Vision",
+                "topics": [
+                    "CNN architectures (ResNet/VGG)",
+                    "Object Detection (YOLO)",
+                    "Image Segmentation"
+                ]
+            },
+            {
+                "level": "Advanced",
+                "focus": "Advanced Vision Systems",
+                "topics": [
+                    "GANs",
+                    "Vision Transformers (ViT)",
+                    "3D Computer Vision",
+                    "Deployment on Edge Devices"
+                ]
+            }
+        ]
+    },
+    "cyber security analyst": {
+        "title": "Cyber Security Analyst",
+        "description": "Protect systems and networks from digital attacks.",
+        "core_stack": [
+            "Networking",
+            "Linux",
+            "SIEM Tools",
+            "Metasploit",
+            "Cryptography"
+        ],
+        "milestones": [
+            {
+                "level": "Beginner",
+                "focus": "Security Foundations",
+                "topics": [
+                    "Network protocols",
+                    "Linux/Windows security",
+                    "Common threats (Phishing/Malware)"
+                ]
+            },
+            {
+                "level": "Intermediate",
+                "focus": "Defense & Monitoring",
+                "topics": [
+                    "SIEM tools (Splunk)",
+                    "Firewall configuration",
+                    "Vulnerability assessment",
+                    "Incident response"
+                ]
+            },
+            {
+                "level": "Advanced",
+                "focus": "Offensive & Strategy",
+                "topics": [
+                    "Penetration testing",
+                    "Ethical Hacking basics",
+                    "Security compliance (ISO/GDPR)",
+                    "Risk management"
+                ]
+            }
+        ]
+    }
+}

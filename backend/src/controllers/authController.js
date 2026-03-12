@@ -32,8 +32,19 @@ exports.signup = async (req, res) => {
     const query = `INSERT INTO users (email, password) VALUES (?, ?)`;
 
     try {
-        await db.query(query, [email, hashedPassword]);
-        res.status(201).json({ message: "user registered successfully" });
+        const [result] = await db.query(query, [email, hashedPassword]);
+
+        // Generate token for auto-login
+        const token = jwt.sign(
+            { id: result.insertId, email: email },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
+
+        res.status(201).json({
+            message: "user registered successfully",
+            token: token
+        });
     } catch (err) {
         if (err.code === 'ER_DUP_ENTRY') {
             return res.status(409).json({ error: "User already exists" });
